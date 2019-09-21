@@ -20,11 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         
-        let navController = UINavigationController(rootViewController: ItemViewController())
-        //self.window?.rootViewController = navController
-         self.window?.rootViewController = ItemViewController()
+        let itemVC = ItemViewController()
+        itemVC.title = "Test Cloud"
         
-        self.window?.makeKeyAndVisible()
+        let navController = UINavigationController(rootViewController: itemVC)
+        self.window?.rootViewController = navController
+        // self.window?.rootViewController = ItemViewController()
+        
+        window?.makeKeyAndVisible()
         
         return true
     }

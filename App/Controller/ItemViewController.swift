@@ -14,6 +14,7 @@ class ItemViewController: UIViewController {
     var filteredItems = [Item]()
     let pageCount = 1
     var inSearchMode = false
+    var searchBar: UISearchBar!
     
     var tableViewDataSource: ItemTableViewDataSource?
     var tableViewDelegate: ItemTableViewDelegate?
@@ -25,40 +26,22 @@ class ItemViewController: UIViewController {
         self.view = screen
         //screen.delegate = self
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        navigationItem.title = "TestApp"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
         self.screen.table.isHidden = true
-        
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        screen.search.barTintColor = UIColor.mainColor()
-        screen.search.tintColor = UIColor.mainDarkBlue()
-        screen.search.showsCancelButton = false
-        for v:UIView in screen.search.subviews.first!.subviews {
-            if v.isKind(of: UITextField.classForCoder()) {
-                (v as! UITextField).tintColor = UIColor.white
-                (v as! UITextField).backgroundColor = UIColor.mainOrange()
-            }
-        }
-        
         api()
-        setupSearchBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("DidAppear")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("WillAppear")
-        //api()
     }
     // MARK: - API Services
     func api(){
-       ItemServices.instance.getItens(page: pageCount){ [weak self] items in
+        ItemServices.instance.getItens(page: pageCount){ [weak self] items in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.items.append(contentsOf: items)
@@ -81,13 +64,50 @@ class ItemViewController: UIViewController {
         screen.table.delegate = tableViewDelegate
         screen.table.reloadData()
     }
-
+    
+    //Mark: - Selectors
+    @objc func showSearchBar(){
+        configureSearchBar(shouldShow: true)
+    }
+    
+    func configureSearchBar(shouldShow: Bool) {
+        
+        if shouldShow {
+            searchBar = UISearchBar()
+            searchBar.delegate = self
+            searchBar.sizeToFit()
+            searchBar.showsCancelButton = true
+            searchBar.becomeFirstResponder()
+            searchBar.tintColor = .black
+            
+            navigationItem.rightBarButtonItem = nil
+            navigationItem.titleView = searchBar
+        } else {
+            navigationItem.titleView = nil
+            configureSearchBarButton()
+            inSearchMode = false
+            self.setupTableView(with: self.items)
+        }
+    }
+    
+    func configureSearchBarButton() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
+    navigationItem.rightBarButtonItem?.tintColor = .black
+    }
+    
 }
 
 //MARK - SEARCH BAR
-extension ItemViewController: UISearchBarDelegate{
+extension ItemViewController: UISearchBarDelegate { 
     func setupSearchBar() {
         self.screen.search.delegate = self
+        //screen.search.sizeToFit()
+        screen.search.sizeToFit()
+        screen.search.showsCancelButton = true
+        screen.search.becomeFirstResponder()
+        screen.search.tintColor = .black
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.titleView = screen.search
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -103,6 +123,7 @@ extension ItemViewController: UISearchBarDelegate{
         if searchText.isEmpty {
             inSearchMode = false
             self.setupTableView(with: self.items)
+            view.endEditing(true)
         } else {
             screen.search.showsCancelButton = true
             screen.search.sizeToFit()
@@ -119,10 +140,8 @@ extension ItemViewController: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         searchBar.text = ""
-        screen.search.showsCancelButton = false
-        self.setupTableView(with: self.items)
+        configureSearchBar(shouldShow: false)
     }
     
     func verifyisContainsItem() -> Bool {

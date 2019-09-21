@@ -38,18 +38,19 @@ final class ItemView: UIView{
 extension ItemView: CodeView{
     func buildViewHierarchy() {
         //Adicionar View
-        addSubview(search)
+        //addSubview(search)
         addSubview(table)
     }
     
     func setupConstraints() {
         //Configurar Constraints
         //Snapkit
-        search.snp.makeConstraints { make in
-            make.top.right.left.equalToSuperview()
-        }
+//        search.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.right.left.equalToSuperview()
+//        }
         table.snp.makeConstraints { make in
-            make.top.equalTo(search.snp.bottom)
+            make.top.equalToSuperview()
             make.right.left.bottom.equalToSuperview()
         }
      }
