@@ -12,12 +12,13 @@ class ItemViewController: UIViewController {
     
     var items = [Item]()
     var filteredItems = [Item]()
-    let pageCount = 1
     var inSearchMode = false
     var searchBar: UISearchBar!
     
     var tableViewDataSource: ItemTableViewDataSource?
     var tableViewDelegate: ItemTableViewDelegate?
+    
+    var service: ItemService = ItemServiceImpl()
     
     let screen = ItemView()
     
@@ -41,7 +42,7 @@ class ItemViewController: UIViewController {
     }
     // MARK: - API Services
     func api(){
-        ItemServices.instance.getItens(page: pageCount){ [weak self] items in
+        service.getItens(){ [weak self] items in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.items.append(contentsOf: items)

@@ -20,7 +20,7 @@
 		807C99552335045400B5C9DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C99542335045400B5C9DF /* Extensions.swift */; };
 		807C99572335046300B5C9DF /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C99562335046300B5C9DF /* CodeView.swift */; };
 		807C99592335055A00B5C9DF /* Return.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C99582335055A00B5C9DF /* Return.swift */; };
-		807C995B2335079A00B5C9DF /* ItemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C995A2335079A00B5C9DF /* ItemServices.swift */; };
+		807C995B2335079A00B5C9DF /* ItemServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C995A2335079A00B5C9DF /* ItemServiceImpl.swift */; };
 		807C995D233515F500B5C9DF /* items_v2.json in Resources */ = {isa = PBXBuildFile; fileRef = 807C995C233515F500B5C9DF /* items_v2.json */; };
 		807C99602335182E00B5C9DF /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C995F2335182E00B5C9DF /* ItemCell.swift */; };
 		807C996223353BA400B5C9DF /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807C996123353BA400B5C9DF /* ItemCell.xib */; };
@@ -74,7 +74,7 @@
 		807C99542335045400B5C9DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		807C99562335046300B5C9DF /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		807C99582335055A00B5C9DF /* Return.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Return.swift; sourceTree = "<group>"; };
-		807C995A2335079A00B5C9DF /* ItemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServices.swift; sourceTree = "<group>"; };
+		807C995A2335079A00B5C9DF /* ItemServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServiceImpl.swift; sourceTree = "<group>"; };
 		807C995C233515F500B5C9DF /* items_v2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = items_v2.json; sourceTree = "<group>"; };
 		807C995F2335182E00B5C9DF /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		807C996123353BA400B5C9DF /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		807C994B233503D400B5C9DF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				807C995A2335079A00B5C9DF /* ItemServices.swift */,
+				807C995A2335079A00B5C9DF /* ItemServiceImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -511,7 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				807C995B2335079A00B5C9DF /* ItemServices.swift in Sources */,
+				807C995B2335079A00B5C9DF /* ItemServiceImpl.swift in Sources */,
 				807C99552335045400B5C9DF /* Extensions.swift in Sources */,
 				807C99602335182E00B5C9DF /* ItemCell.swift in Sources */,
 				807C996B2335609500B5C9DF /* ItemTableViewDelegate.swift in Sources */,
