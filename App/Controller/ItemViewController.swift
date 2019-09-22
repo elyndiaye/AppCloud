@@ -44,8 +44,8 @@ class ItemViewController: UIViewController {
     func api(){
         service.getItens(){ [weak self] items in
             guard let self = self else { return }
+             self.items.append(contentsOf: items)
             DispatchQueue.main.async {
-                self.items.append(contentsOf: items)
                 if self.items.count >= 1 {
                     self.screen.table.isHidden = false
                     self.setupTableView(with: self.items)
@@ -92,15 +92,14 @@ class ItemViewController: UIViewController {
     }
     
     func configureSearchBarButton() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
-    navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
 }
 
 //MARK - SEARCH BAR
-extension ItemViewController: UISearchBarDelegate { 
-    
+extension ItemViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         screen.search.resignFirstResponder()
         let query = searchBar.text ?? ""
@@ -108,7 +107,6 @@ extension ItemViewController: UISearchBarDelegate {
             print(query)
         }
     }
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
@@ -119,7 +117,6 @@ extension ItemViewController: UISearchBarDelegate {
             screen.search.showsCancelButton = true
             screen.search.sizeToFit()
             inSearchMode = true
-            print(searchText)
             filteredItems = items.filter({ $0.title.lowercased().range(of: searchText.lowercased()) != nil })
             if verifyisContainsItem(){
                 DisplayTextField(text: "Not Found", message: "Item not found in the list, please try again !")

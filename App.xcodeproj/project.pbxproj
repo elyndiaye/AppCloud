@@ -25,10 +25,13 @@
 		807C99602335182E00B5C9DF /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C995F2335182E00B5C9DF /* ItemCell.swift */; };
 		807C996223353BA400B5C9DF /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807C996123353BA400B5C9DF /* ItemCell.xib */; };
 		807C996423353FFA00B5C9DF /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C996323353FFA00B5C9DF /* ItemView.swift */; };
-		807C9966233541A600B5C9DF /* ItemViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C9965233541A600B5C9DF /* ItemViewControllerSpec.swift */; };
+		807C9966233541A600B5C9DF /* ItemViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C9965233541A600B5C9DF /* ItemViewSpec.swift */; };
 		807C99692335607C00B5C9DF /* ItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C99682335607C00B5C9DF /* ItemTableViewDataSource.swift */; };
 		807C996B2335609500B5C9DF /* ItemTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C996A2335609500B5C9DF /* ItemTableViewDelegate.swift */; };
 		80D854F22336F436006368AB /* ItemSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D854F12336F436006368AB /* ItemSelectionDelegate.swift */; };
+		80D854F6233712C1006368AB /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D854F5233712C1006368AB /* JsonHelper.swift */; };
+		80D854F8233714AA006368AB /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D854F7233714AA006368AB /* ItemViewController.swift */; };
+		80D854FA23371529006368AB /* ItemServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D854F923371529006368AB /* ItemServiceMock.swift */; };
 		C50236C7DEB44FB9868658F1 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93127357A82CE99D63CD8532 /* Pods_App.framework */; };
 		DE91394D290C6C69740796B9 /* Pods_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80102B038AEF3E977BE1EFEC /* Pods_AppTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,10 +83,13 @@
 		807C995F2335182E00B5C9DF /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		807C996123353BA400B5C9DF /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 		807C996323353FFA00B5C9DF /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
-		807C9965233541A600B5C9DF /* ItemViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewControllerSpec.swift; sourceTree = "<group>"; };
+		807C9965233541A600B5C9DF /* ItemViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewSpec.swift; sourceTree = "<group>"; };
 		807C99682335607C00B5C9DF /* ItemTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewDataSource.swift; sourceTree = "<group>"; };
 		807C996A2335609500B5C9DF /* ItemTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewDelegate.swift; sourceTree = "<group>"; };
 		80D854F12336F436006368AB /* ItemSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionDelegate.swift; sourceTree = "<group>"; };
+		80D854F5233712C1006368AB /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
+		80D854F7233714AA006368AB /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		80D854F923371529006368AB /* ItemServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServiceMock.swift; sourceTree = "<group>"; };
 		93127357A82CE99D63CD8532 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91BBE11AE48AE2263B73E54 /* Pods-AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppTests/Pods-AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		CD121AFB2AED228B91D427AF /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,10 +191,12 @@
 		807C99302335013500B5C9DF /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				80D854F4233712AE006368AB /* Json */,
 				807C99312335013500B5C9DF /* AppTests.swift */,
 				807C99332335013500B5C9DF /* Info.plist */,
-				807C995C233515F500B5C9DF /* items_v2.json */,
-				807C9965233541A600B5C9DF /* ItemViewControllerSpec.swift */,
+				807C9965233541A600B5C9DF /* ItemViewSpec.swift */,
+				80D854F7233714AA006368AB /* ItemViewController.swift */,
+				80D854F923371529006368AB /* ItemServiceMock.swift */,
 			);
 			path = AppTests;
 			sourceTree = "<group>";
@@ -277,6 +285,15 @@
 				807C996A2335609500B5C9DF /* ItemTableViewDelegate.swift */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		80D854F4233712AE006368AB /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				80D854F5233712C1006368AB /* JsonHelper.swift */,
+				807C995C233515F500B5C9DF /* items_v2.json */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -542,7 +559,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				807C9966233541A600B5C9DF /* ItemViewControllerSpec.swift in Sources */,
+				80D854F6233712C1006368AB /* JsonHelper.swift in Sources */,
+				80D854F8233714AA006368AB /* ItemViewController.swift in Sources */,
+				80D854FA23371529006368AB /* ItemServiceMock.swift in Sources */,
+				807C9966233541A600B5C9DF /* ItemViewSpec.swift in Sources */,
 				807C99322335013500B5C9DF /* AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,13 +12,13 @@ import Nimble_Snapshots
 @testable import App
 
 
-class ItemViewControllerSpec: QuickSpec {
+class ItemViewSpec: QuickSpec {
     override func spec() {
         describe("Screen ItemView") {
             it("has valid snapshot") {
                 let frame = UIScreen.main.bounds
                 let view = ItemView(frame: frame)
-                expect(view) == recordSnapshot("ItemViewController")
+                expect(view) == recordSnapshot("ItemView")
             }
         }
     }
