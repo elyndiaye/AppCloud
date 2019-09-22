@@ -31,6 +31,7 @@ class ItemViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
         self.screen.table.isHidden = true
+        screen.load.startAnimating()
         api()
     }
     
@@ -47,6 +48,8 @@ class ItemViewController: UIViewController {
              self.items.append(contentsOf: items)
             DispatchQueue.main.async {
                 if self.items.count >= 1 {
+                    self.screen.load.stopAnimating()
+                    self.screen.load.isHidden = true
                     self.screen.table.isHidden = false
                     self.setupTableView(with: self.items)
                 } else {

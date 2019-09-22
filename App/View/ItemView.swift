@@ -23,6 +23,12 @@ final class ItemView: UIView{
         return view
     }()
     
+    lazy var load: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(frame: .zero)
+        view.color = .black
+        return view
+    }()
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         setupView()
@@ -40,6 +46,8 @@ extension ItemView: CodeView{
         //Adicionar View
         //addSubview(search)
         addSubview(table)
+        addSubview(load)
+        bringSubviewToFront(load)
     }
     
     func setupConstraints() {
@@ -52,6 +60,10 @@ extension ItemView: CodeView{
         table.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.right.left.bottom.equalToSuperview()
+        }
+        
+        load.snp.makeConstraints { (make) in
+            make.right.left.top.bottom.equalToSuperview()
         }
      }
     
