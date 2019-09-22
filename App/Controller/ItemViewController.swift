@@ -25,7 +25,6 @@ class ItemViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = screen
-        //screen.delegate = self
     }
     
     override func viewDidLoad() {
@@ -40,6 +39,7 @@ class ItemViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
     }
+    
     // MARK: - API Services
     func api(){
         service.getItens(){ [weak self] items in
@@ -59,7 +59,7 @@ class ItemViewController: UIViewController {
     //MARK: - SetupTableView
     func setupTableView(with item:[Item]){
         tableViewDataSource = ItemTableViewDataSource(items: item, tableView: screen.table)
-        tableViewDelegate = ItemTableViewDelegate(items: item)
+        tableViewDelegate = ItemTableViewDelegate(items: item, delegate: self)
         
         screen.table.dataSource = tableViewDataSource
         screen.table.delegate = tableViewDelegate
@@ -100,16 +100,6 @@ class ItemViewController: UIViewController {
 
 //MARK - SEARCH BAR
 extension ItemViewController: UISearchBarDelegate { 
-    func setupSearchBar() {
-        self.screen.search.delegate = self
-        //screen.search.sizeToFit()
-        screen.search.sizeToFit()
-        screen.search.showsCancelButton = true
-        screen.search.becomeFirstResponder()
-        screen.search.tintColor = .black
-        navigationItem.rightBarButtonItem = nil
-        navigationItem.titleView = screen.search
-    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         screen.search.resignFirstResponder()
@@ -132,7 +122,7 @@ extension ItemViewController: UISearchBarDelegate {
             print(searchText)
             filteredItems = items.filter({ $0.title.lowercased().range(of: searchText.lowercased()) != nil })
             if verifyisContainsItem(){
-                EmptyTextField(text: "Not Found", message: "Item not found in the list, please try again !")
+                DisplayTextField(text: "Not Found", message: "Item not found in the list, please try again !")
                 self.setupTableView(with: self.items)
                 return
             }
@@ -148,5 +138,14 @@ extension ItemViewController: UISearchBarDelegate {
     func verifyisContainsItem() -> Bool {
         return filteredItems.isEmpty
     }
+}
+
+//MARK: - PROTOCOL ITEM SELECTION DELEGATE
+extension ItemViewController: ItemSelectionDelegate{
+    func didSelect(item: Item) {
+        DisplayTextField(text: "\(item.title)", message: "\(item.itemDescription)")
+    }
+    
+    
 }
 
