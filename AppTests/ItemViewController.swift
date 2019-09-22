@@ -7,3 +7,26 @@
 //
 
 import Foundation
+import Quick
+import Nimble
+import Nimble_Snapshots
+@testable import App
+
+class ItemViewControllerSpec: QuickSpec {
+    override func spec() {
+        let controller = ItemViewController()
+        describe("MovieSearchViewController") {
+
+            it("should have a valid instance") {
+                expect(controller).toNot(beNil())
+            }
+
+            it("should have the expected number of Items") {
+                controller.service = ItemServiceMock()
+                controller.viewDidLoad()
+                print(controller.items.count)
+                expect(controller.items.count).to(equal(8))
+            }
+        }
+    }
+}

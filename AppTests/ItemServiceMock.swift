@@ -6,4 +6,21 @@
 //  Copyright © 2019 ely.assumpcao.ndiaye. All rights reserved.
 //
 
-import Foundation
+@testable import App
+
+class ItemServiceMock: ItemService {
+    
+    let items: [Item]
+    private let jsonHelper: JsonHelper
+    
+    init() {
+        self.jsonHelper = JsonHelper()
+        self.items = jsonHelper.decodeJson()
+        print(self.items)
+    }
+    
+    func getItens(completionHandler: @escaping ([Item]) -> Void) {
+        completionHandler(self.items)
+    }
+}
+
