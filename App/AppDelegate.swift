@@ -21,11 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = UIColor.white
         
         let itemVC = ItemViewController()
-        itemVC.title = "Test Cloud"
+        itemVC.title = "Test Nous"
         
         let navController = UINavigationController(rootViewController: itemVC)
         self.window?.rootViewController = navController
-        // self.window?.rootViewController = ItemViewController()
         
         window?.makeKeyAndVisible()
         

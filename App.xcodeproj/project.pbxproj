@@ -192,11 +192,11 @@
 			isa = PBXGroup;
 			children = (
 				80D854F4233712AE006368AB /* Json */,
-				807C99312335013500B5C9DF /* AppTests.swift */,
 				807C99332335013500B5C9DF /* Info.plist */,
 				807C9965233541A600B5C9DF /* ItemViewSpec.swift */,
 				80D854F7233714AA006368AB /* ItemViewController.swift */,
 				80D854F923371529006368AB /* ItemServiceMock.swift */,
+				807C99312335013500B5C9DF /* AppTests.swift */,
 			);
 			path = AppTests;
 			sourceTree = "<group>";

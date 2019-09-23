@@ -16,7 +16,6 @@ class ItemServiceMock: ItemService {
     init() {
         self.jsonHelper = JsonHelper()
         self.items = jsonHelper.decodeJson()
-        print(self.items)
     }
     
     func getItens(completionHandler: @escaping ([Item]) -> Void) {

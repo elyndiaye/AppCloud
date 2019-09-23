@@ -18,7 +18,7 @@ class ItemViewSpec: QuickSpec {
             it("has valid snapshot") {
                 let frame = UIScreen.main.bounds
                 let view = ItemView(frame: frame)
-                expect(view) == recordSnapshot("ItemView")
+                expect(view) == snapshot("ItemView")
             }
         }
     }

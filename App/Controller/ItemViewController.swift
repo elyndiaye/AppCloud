@@ -35,12 +35,6 @@ class ItemViewController: UIViewController {
         api()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
     // MARK: - API Services
     func api(){
         service.getItens(){ [weak self] items in
