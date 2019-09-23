@@ -29,7 +29,9 @@ class ItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
+        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
+        setupSearchBar()
         self.screen.table.isHidden = true
         screen.load.startAnimating()
         api()
@@ -96,7 +98,12 @@ class ItemViewController: UIViewController {
 }
 
 //MARK - SEARCH BAR
-extension ItemViewController: UISearchBarDelegate {
+extension ItemViewController: UISearchBarDelegate{
+    func setupSearchBar() {
+        self.screen.search.delegate = self
+        navigationItem.titleView = screen.search
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         screen.search.resignFirstResponder()
         let query = searchBar.text ?? ""
@@ -105,18 +112,19 @@ extension ItemViewController: UISearchBarDelegate {
         }
     }
     
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             inSearchMode = false
             self.setupTableView(with: self.items)
-            view.endEditing(true)
         } else {
             screen.search.showsCancelButton = true
             screen.search.sizeToFit()
             inSearchMode = true
+            print(searchText)
             filteredItems = items.filter({ $0.title.lowercased().range(of: searchText.lowercased()) != nil })
             if verifyisContainsItem(){
-                DisplayTextField(text: "Not Found", message: "Item not found in the list, please try again !")
+//                EmptyTextField(text: "Not Found", message: "Item not found in the list, please try again !")
                 self.setupTableView(with: self.items)
                 return
             }
@@ -125,15 +133,16 @@ extension ItemViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         searchBar.text = ""
-        configureSearchBar(shouldShow: false)
+        screen.search.showsCancelButton = false
+        self.setupTableView(with: self.items)
     }
     
     func verifyisContainsItem() -> Bool {
         return filteredItems.isEmpty
     }
 }
-
 //MARK: - PROTOCOL ITEM SELECTION DELEGATE
 extension ItemViewController: ItemSelectionDelegate{
     func didSelect(item: Item) {
